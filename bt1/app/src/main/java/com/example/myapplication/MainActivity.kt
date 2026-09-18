@@ -12,10 +12,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private var currentStudent = Student(
-        id = "22505120005",
-        name = "Nguyen Van An",
-        className = "DD2026",
-        email = "anv@ute.udn.vn",
+        id = "2415053122312",
+        name = "Nguyễn Đỗ Hữu Giang",
+        className = "24T3",
+        email = "2415053122312@ute.udn.vn",
         gpa = 3.8
     )
 
@@ -24,24 +24,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Gán dữ liệu ban đầu lên các Views
         bindStudentData(currentStudent)
 
-        // Xử lý sự kiện khi người dùng bấm nút Cập Nhật
         binding.btnUpdateGpa.setOnClickListener {
             val inputStr = binding.edtNewGpa.text.toString().trim()
             val newGpa = inputStr.toDoubleOrNull()
 
             if (newGpa == null || newGpa !in 0.0..4.0) {
-                // Báo lỗi nếu nhập sai định dạng hoặc ngoài khoảng 0.0 - 4.0
                 binding.edtNewGpa.error = "Vui lòng nhập GPA hợp lệ (0.0 - 4.0)"
                 toast("Điểm GPA không hợp lệ!")
                 return@setOnClickListener
             }
 
-            // Cập nhật sinh viên bằng hàm copy()
             currentStudent = currentStudent.copy(gpa = newGpa)
-            bindStudentData(currentStudent) // Vẽ lại dữ liệu mới lên Views
+            bindStudentData(currentStudent)
 
             toast("Cập nhật điểm thành công!")
         }
